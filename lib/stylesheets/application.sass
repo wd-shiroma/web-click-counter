@@ -1,0 +1,126 @@
+$bg-twitter: #50abf1;
+$bg-mastodon: #3088d4;
+$breakpoint: 750px;
+
+@mixin button($_bg-color: $bg-color)
+  user-select: none
+  cursor: default
+
+  &:hover
+    background-color: darken($_bg-color, 10%)
+
+  &:active
+    background-color: darken($_bg-color, 30%)
+
+html
+  font-size: 14px
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif
+  @media screen and (max-width: $breakpoint)
+    font-size: 5vw
+
+body
+  background-image: $bg-image
+  background-position: center center
+  background-repeat: no-repeat
+  background-attachment: fixed
+  background-size: cover
+  background-color: $bg-color
+  text-align: center
+  color: $font-color
+
+h1
+  text-align: center
+  font-size: 6em
+  @media screen and (max-width: $breakpoint)
+    font-size: 5vw
+
+.panel
+  display: inline-block
+  margin-bottom: 1em
+  background-color: rgba($bg-color, 0.7)
+  font-size: 1em
+  left: 0
+  right: 0
+  border: solid 1px $bg-color
+  border-radius: 2em
+  @media screen and (max-width: $breakpoint)
+    font-size: 5vw
+
+.share
+  display: inline-block
+  margin: 0.4em
+  padding: 0.1em 1em
+  border-radius: 5px
+
+.toot
+  background-color: $bg-mastodon
+  @extend .share
+  @include button($bg-mastodon)
+
+.tweet
+  background-color: $bg-twitter
+  @extend .share
+  @include button($bg-twitter)
+
+.description
+  padding: 1em
+  @extend .panel
+
+  .streaming_error
+    display: disabled
+    color: #F00
+    font-weight: bold
+
+    .streaming_connect
+      display: inline-block
+      float: right
+      padding: 0 0.5em
+      background-color: $button-bg-color
+      border: solid 1px lighten($button-bg-color, 10%)
+      border-radius: 0.4em
+      color: $button-font-color
+      @include button($button-bg-color)
+
+.counter_body
+  text-alien: center
+
+  .btn_form
+    padding: 2em
+    @extend .panel
+
+    .counter
+      color: $counter
+      text-shadow: 1px 1px 0 lighten($counter, 80%), -1px -1px 0 lighten($counter, 80%), -1px 1px 0 lighten($counter,   80%),  1px -1px 0 lighten($counter, 80%), 0px 1px 0 lighten($counter, 80%),  0px -1px 0 lighten($counter, 80%),   -1px 0px 0 lighten($counter, 80%),  1px  0px 0 lighten($counter, 80%)
+      font-size: 4em
+      @media screen and (max-width: $breakpoint)
+        font-size: 12vw
+
+    .btn
+      display: inline-block
+      margin-top: 0.5em
+      margin-bottom: 0.5em
+      font-size: 3em
+      padding: 0.2em 1em
+      background-color: $button-bg-color
+      border: solid 1px lighten($button-bg-color, 10%)
+      border-radius: 0.4em
+      color: $button-font-color
+      @include button($button-bg-color)
+      @media screen and (max-width: $breakpoint)
+        font-size: 9vw
+
+.share_all
+  padding: 1em
+  @extend .panel
+
+.share_body
+  margin-bottom: 5em
+
+.footer
+  border-top: solid 1px lighten($bg-color, 10%)
+  padding: 0.5em
+  position: fixed
+  bottom: 0
+  left: 50px
+  right: 50px
+  text-align: right

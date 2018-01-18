@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= config.system.title %></title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+        <h1 id="page_title"><%= config.system.title %></h1>
+        <div>
+            <div class="description">
+                <%= config.system.description %>
+                <div class="streaming_error">
+                    <%= config.lang.error_connection_message %>
+                    <div class="streaming_connect"><%= config.lang.error_connection_button %></div>
+                </div>
+            </div>
+        </div>
+        <div class="counter_body">
+            <% counts.forEach(function (cnt) { %>
+            <div class="btn_form" data-type="<%= cnt.type %>">
+                <div class="counter"><%= cnt.counter %></div>
+                <div class="btn"><%= cnt.title %></div>
+                <div class="share_button">
+                    <div class="toot" name="btn_share"><%= config.lang.share_button_toot %></div>
+                </div>
+                <div class="share_button">
+                    <div class="tweet" name="btn_share"><%= config.lang.share_button_tweet %></div>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+        <% if (config.buttons.length > 1) { %>
+        <div class="share_body">
+            <div class="share_all">
+                <div class="toot" name="btn_share"><%= config.lang.share_all_toot %></div>
+                <div class="tweet" name="btn_share"><%= config.lang.share_all_tweet %></div>
+            </div>
+        </div>
+        <% } %>
+        <div class="footer">
+            <span><%= package.name %> v<%= package.version %></span>
+            <a href="<%= config.system.source_repository %>"><%= config.lang.source %></a>
+        </div>
+        <div id="share_button_text" style="display: none;"><%= config.lang.share_button_text %></div>
+        <div id="share_all_text" style="display: none;"><%= config.lang.share_all_text %></div>
+        <script type="text/javascript">
+            var domain = '<%= config.system.domain %>';
+            var effects = [
+                <% config.buttons.forEach( b => {
+                    if (Array.isArray(b.sounds)) b.sounds.forEach( s => { %>
+                { button: '<%= b.type %>', file: '<%= s.file %>', weight: <%= s.weight %> },
+                    <% });
+                }); %>
+            ];
+        </script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.slim.min.js"></script>
+        <script type="text/javascript" src="/javascripts/streaming.js"></script>
+    </body>
+</html>

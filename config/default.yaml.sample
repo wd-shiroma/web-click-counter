@@ -1,0 +1,52 @@
+# システム設定
+# ドメインはとりあえず直してください。
+system:
+  domain: "10.2.1.6"
+  title: "んなぁーボタン"
+  description: "んなぁーするだけの画期的なサービスらしい"
+  source_repository: "https://github.com/wd-shiroma/web-click-counter"
+
+# ボタン設定
+# 複数ボタン設定できます。
+# buttons.sounds.weightの値が大きい音声データの方が再生確率が高くなります。
+buttons:
+  -
+    type: nanachi
+    title: "んなぁー"
+    sounds:
+      -
+        file: "nanachi7.ogg"
+        weight: 10000
+      -
+        file: "nanachi8.ogg"
+        weight: 10000
+      -
+        file: "nanachi20.ogg"
+        weight: 10000
+  -
+    type: reg
+    title: "度し難い"
+  -
+    type: maa
+    title: "まああああ"
+
+# 言語設定
+# lang.share_button_text, lang.share_all_textは以下の変数を利用することができます。
+#
+# {title}                このファイルのsystem.titleを参照
+# {url}                  現在アクセスしているURL
+# {button_title}         このファイルのbuttons.titleを参照
+# {button_count}         ページに表示されているカウント数
+# {all_count}            ページに表示されているカウント数の合計
+# {user_button_count}    ページを開いてからの各ボタンクリック回数
+# {user_all_count}       ページを開いてからの各ボタンクリック回数の合計
+lang:
+  share_button_toot: "この結果をトゥートする"
+  share_button_tweet: "この結果をツイートする"
+  share_button_text: "今回は{user_button_count}回{button_title}しました！\n総{button_title}数：{button_count}回\n\n#{title}\n{url}"
+  share_all_toot: "全ての結果をトゥートする"
+  share_all_tweet: "全ての結果をツイートする"
+  share_all_text: "今回は{user_all_count}回クリックしました！\n総クリック数：{all_count}回\n\n#{title}\n{url}"
+  error_connection_message: "エラー：サーバーとの通信が切断されました。再接続してください。"
+  error_connection_button: "再試行"
+  source: "ソースコード"
