@@ -1,4 +1,4 @@
-#web-click-counter
+# web-click-counter
 
 クリックしたら音が流れてカウントが1増えるだけのやつです。  
 [へぇボタン](http://tech.speee.jp/entry/2581)や[にゃんぱすーボタン](http://nyanpass.com)を参考にして作りました。
