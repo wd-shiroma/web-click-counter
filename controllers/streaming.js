@@ -3,6 +3,11 @@ var db = require('../models/db');
 
 var wss;
 
+var _polling = function() {
+    var data = {polling: true};
+    wss.broadcast(JSON.stringify(data));
+};
+
 var _decode_data = function(data) {
     var decodedData = JSON.parse(data);
     if (!decodedData || !decodedData.button) {
@@ -43,3 +48,4 @@ var _start = function(){
 };
 
 module.exports.open = _start;
+setInterval(_polling, 30000);
