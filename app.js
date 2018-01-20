@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var sassMiddleware = require('node-sass-middleware');
+var uglify = require('uglify-es');
+var fs = require('fs');
 
 var db = require('./models/db');
 
@@ -11,6 +13,10 @@ var index = require('./routes/index');
 var streaming = require('./controllers/streaming');
 
 var app = express();
+
+fs.writeFileSync("./public/javascripts/streaming.min.js", uglify.minify({
+    "streaming.js": fs.readFileSync("./lib/javascripts/streaming.js", "utf8"),
+}).code, "utf8");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
